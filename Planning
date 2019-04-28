@@ -18,6 +18,16 @@ PLAYER
   - Power level regen
   - Attack damage (kick/punch damage)
   - Range of attack for player. eg if (player1.kick() && player1.inRange(player2)) { player2.takeDamage(5); }
+- Actions:
+  - move forward
+  - move backward
+  - jump
+  - crouch/duck (?)
+  - kick
+  - punch
+  - block
+  - activate power move
+  - take damage
 - Characters
   
 
