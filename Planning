@@ -18,8 +18,14 @@ GUI
   
 
   Objects to interact with?
-  Chars to select
+  Chars to select + random char
   Screen Loading -> menu (PLAY / EXIT) -> if PLAY go char select -> gameplay -> win/loss -> (((BACK TO menu: PLAY AGAIN? / HOME)))
   												|
   												|
   												Pause Menu (RESUME / FORFEIT)
+                          
+Char select:
+- Reckon you can view other player's char selection? 
+- Countdown timer (30 sec?) to choose char
+- "SELECT A CHARACTER"=title, grid of charss -> click on a char displays info/stats with "CONFIRM" button 
+- "PLAY" button inactive until char has been selected, if player2 selects "PLAY" before player1 then display "Player 2 waiting..."
