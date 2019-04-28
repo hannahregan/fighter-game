@@ -1,20 +1,25 @@
 CONTROLS:
 - WASD for general movement
 - Spacebar for jump
-- B N M punch, kick, block
+- B N M block, punch, kick
 - P power move
 
 
 GAME ENVIRONMENT
+
+GUI
+
+- Score ?? (multiplier based on combo moves, ie if certain combo is used then yields higher score than if regular punch/kick used)
 - Players
   - Health
   - Power level regen
   - Attack damage (kick/punch damage)
-  - 
+  - Range of attack for player. eg if (player1.kick() && player1.inRange(player2)) { player2.takeDamage(5); }
+  
 
   Objects to interact with?
   Chars to select
-  Screen Loading -> menu -> char select -> gameplay -> win/loss -> (((BACK TO menu)))
+  Screen Loading -> menu (PLAY / EXIT) -> if PLAY go char select -> gameplay -> win/loss -> (((BACK TO menu: PLAY AGAIN? / HOME)))
   												|
   												|
-  												Pause Menu
+  												Pause Menu (RESUME / FORFEIT)
