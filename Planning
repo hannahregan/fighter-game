@@ -9,12 +9,16 @@ GAME ENVIRONMENT
 
 GUI
 
+GAMEPLAY
+
+PLAYER
 - Score ?? (multiplier based on combo moves, ie if certain combo is used then yields higher score than if regular punch/kick used)
-- Players
+- Player
   - Health
   - Power level regen
   - Attack damage (kick/punch damage)
   - Range of attack for player. eg if (player1.kick() && player1.inRange(player2)) { player2.takeDamage(5); }
+- Characters
   
 
   Objects to interact with?
@@ -29,3 +33,8 @@ Char select:
 - Countdown timer (30 sec?) to choose char
 - "SELECT A CHARACTER"=title, grid of charss -> click on a char displays info/stats with "CONFIRM" button 
 - "PLAY" button inactive until char has been selected, if player2 selects "PLAY" before player1 then display "Player 2 waiting..."
+
+RAMBLING:
+- New idea: countdown timer for a minute at each time that introduces a randomised "obstacle" that does damage to both players. 
+  For example, the first can be a neutral enemy that deals damage to both of the players. Players have to attack enemy to get rid of it.
+  Another example: randomly generated 'missiles' that come out of the sides so players have to move/jump or will take damage.
