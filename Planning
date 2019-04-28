@@ -1,0 +1,13 @@
+CONTROLS:
+- WASD for general movement
+- Spacebar for jump
+- B N M punch, kick, block
+- P power move
+
+
+GAME ENVIRONMENT
+- Players
+  - Health
+  - Power level regen
+  - Attack damage (kick/punch damage)
+  - 
