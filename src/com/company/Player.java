@@ -6,7 +6,7 @@ public class Player {
     //the player played by the person using this client
     public int xpos, ypos, jumpTimer, health, abilityTimer, punchTimer;
     public Rectangle playerHitBox, punchHitBox;
-    public Boolean jumping, onground, punching;
+    public Boolean jumping, onground, punching, faceLeft;
 
     public Player(String type){
         //positionss
@@ -19,6 +19,7 @@ public class Player {
 
 
         //jumping shite
+        this.setFaceLeft(false);
         this.setPunching(false);
         this.setOnground(false);
         this.setJumping(false);
@@ -74,10 +75,14 @@ public class Player {
 
         if(this.getPunchTimer() > 50){
             //punching out
-            pun
+            ///CANT PUNCH LEFT
+            punchHitBox.setBounds(this.xpos + 70, this.ypos + 50, (int) punchHitBox.getWidth() + 1, 10);
+
             this.setPunchTimer(this.getPunchTimer() - 1);
         }else if(this.getPunchTimer() > 1){
             //punching in
+
+            punchHitBox.setBounds(this.xpos + 70, this.ypos + 50, (int) punchHitBox.getWidth() - 1, 10);
 
             this.setPunchTimer(this.getPunchTimer() - 1);
         }else{
@@ -102,6 +107,7 @@ public class Player {
     public int move_left(int delta){
         //takes the delta of the game and moves the player left by that much
         this.xpos -= delta;
+        this.setFaceLeft(true);
         //returns the xpos for checking collisions ect
         return xpos;
     }
@@ -110,6 +116,7 @@ public class Player {
         //takes delta and move the player right by that much
         this.xpos += delta;
         //returns xpos for collision detection
+        this.setFaceLeft(false);
         return xpos;
     }
 
@@ -119,8 +126,27 @@ public class Player {
         return this.ypos;
     }
 
+
+
+
+
+
+
+
+
+
+
+
     public int getXpos() {
         return xpos;
+    }
+
+    public Boolean getFaceLeft() {
+        return faceLeft;
+    }
+
+    public void setFaceLeft(Boolean faceLeft) {
+        this.faceLeft = faceLeft;
     }
 
     public Rectangle getPunchHitBox() {

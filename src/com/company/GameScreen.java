@@ -37,6 +37,7 @@ public class GameScreen extends BasicGameState {
     @Override
     public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
         playerImg.draw(player.getXpos(), player.getYpos());
+        g.drawRect(player.getPunchHitBox().x, player.getPunchHitBox().y, (float)player.getPunchHitBox().getWidth(), (float)player.getPunchHitBox().getHeight());
     }
 
     @Override
