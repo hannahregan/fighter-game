@@ -25,7 +25,7 @@ PLAYER
   - move backward
   - jump
   - crouch/duck (?)
-  - kick
+  - kick **NOTE: Kick and punch have same range of attack, however kick deals more damage and takes longer time before use again**
   - punch
   - block
   - activate power move
