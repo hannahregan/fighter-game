@@ -5,10 +5,10 @@ import java.awt.*;
 public class Player {
     //the player played by the person using this client
     public int xpos, ypos, jumpTimer, health, abilityTimer, punchTimer;
-    public Rectangle playerHitBox, punchHitBox;
-    public Boolean jumping, onground, punching, faceLeft;
+    public Rectangle playerHitBox, punchHitBox, blockHitBox;
+    public Boolean jumping, onground, punching, faceLeft, blocking;
 
-    public Player(String type){
+    public Player(String type) {
         //positionss
         this.xpos = 100;
         this.ypos = 100;
@@ -23,17 +23,19 @@ public class Player {
         this.setPunching(false);
         this.setOnground(false);
         this.setJumping(false);
+        this.setBlocking(false);
 
         //hitboxes
         playerHitBox = new Rectangle(this.xpos, this.ypos, 70, 100);
         punchHitBox = new Rectangle(this.xpos, this.ypos, 0, 0);
+        blockHitBox = new Rectangle(this.xpos, this.ypos, 0, 0);
 
         //health ect
         this.health = 100;
         this.abilityTimer = 50; //halfway
 
         //type passed from select player screen
-        switch(type){
+        switch (type) {
             case "1":
                 //statements
                 break;
@@ -60,48 +62,70 @@ public class Player {
 
     }
 
-    public void update(int delta){
+    public void update(int delta) {
         //keeps the hitbox at the player && may soon do other stuff
         playerHitBox.setLocation(this.xpos, this.ypos);
 
         //jumping
-        if(this.jumpTimer > 0){
+        if (this.jumpTimer > 0) {
             this.ypos -= delta;
             this.setOnground(false);
             this.jumpTimer -= 1;
-        }else if(this.jumpTimer == 0){
+        } else if (this.jumpTimer == 0) {
             this.setJumping(false);
         }
 
-        if(this.getPunchTimer() > 50){
+        if (this.getPunchTimer() > 50) {
             //punching out
             ///CANT PUNCH LEFT
-            punchHitBox.setBounds(this.xpos + 70, this.ypos + 50, (int) punchHitBox.getWidth() + 1, 10);
-
+            if (this.getFaceLeft()) {
+                punchHitBox.setBounds((int) (this.xpos - (punchHitBox.getWidth() + 1)), this.ypos + 50, (int) (punchHitBox.getWidth() + 1), 10);
+            } else {
+                punchHitBox.setBounds(this.xpos + 70, this.ypos + 50, (int) punchHitBox.getWidth() + 1, 10);
+            }
             this.setPunchTimer(this.getPunchTimer() - 1);
-        }else if(this.getPunchTimer() > 1){
+        } else if (this.getPunchTimer() > 1) {
             //punching in
-
-            punchHitBox.setBounds(this.xpos + 70, this.ypos + 50, (int) punchHitBox.getWidth() - 1, 10);
-
+            if (this.getFaceLeft()) {
+                punchHitBox.setBounds((int) (this.xpos - (punchHitBox.getWidth() - 1)), this.ypos + 50, (int) (punchHitBox.getWidth() - 1), 10);
+            } else {
+                punchHitBox.setBounds(this.xpos + 70, this.ypos + 50, (int) punchHitBox.getWidth() - 1, 10);
+            }
             this.setPunchTimer(this.getPunchTimer() - 1);
-        }else{
+        } else {
             this.setPunching(false);
+            punchHitBox.setBounds(this.xpos, this.ypos, 0, 0);
+        }
+
+        //blocking
+        if(this.getBlocking()){
+            if(this.getFaceLeft()){
+                blockHitBox.setBounds(this.xpos - 10, this.ypos, 10, 50);
+            }else {
+                blockHitBox.setBounds(this.xpos + 70, this.ypos, 10, 50);
+            }
+        }else{
+            blockHitBox.setBounds(this.xpos, this.ypos, 0, 0);
         }
 
     }
 
-    public int jump(int delta){
+    public int jump(int delta) {
         this.setJumping(true);
         //returns jumping timers
         this.jumpTimer = 200;
         return this.jumpTimer;
     }
 
-    public void punch(){
+    public void punch() {
         //punching
         this.setPunching(true);
         this.setPunchTimer(100);
+    }
+
+    public void block() {
+        //blocking
+        this.setBlocking(true);
     }
 
     public int move_left(int delta){
@@ -133,12 +157,24 @@ public class Player {
 
 
 
+    public Boolean getBlocking() {
+        return blocking;
+    }
 
-
-
+    public void setBlocking(Boolean blocking) {
+        this.blocking = blocking;
+    }
 
     public int getXpos() {
         return xpos;
+    }
+
+    public Rectangle getBlockHitBox() {
+        return blockHitBox;
+    }
+
+    public void setBlockHitBox(Rectangle blockHitBox) {
+        this.blockHitBox = blockHitBox;
     }
 
     public Boolean getFaceLeft() {

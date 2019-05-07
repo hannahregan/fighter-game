@@ -38,6 +38,7 @@ public class GameScreen extends BasicGameState {
     public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
         playerImg.draw(player.getXpos(), player.getYpos());
         g.drawRect(player.getPunchHitBox().x, player.getPunchHitBox().y, (float)player.getPunchHitBox().getWidth(), (float)player.getPunchHitBox().getHeight());
+        g.drawRect(player.getBlockHitBox().x, player.getBlockHitBox().y, (float)player.getBlockHitBox().getWidth(), (float)player.getBlockHitBox().getHeight());
     }
 
     @Override
@@ -62,6 +63,14 @@ public class GameScreen extends BasicGameState {
         if(input.isKeyPressed(input.KEY_Q)){
             player.punch();
         }
+
+        //block
+        if(input.isKeyDown(input.KEY_W)){
+            player.block();
+        }else{
+            player.setBlocking(false);
+        }
+
 
         //gravity
         if(player.getJumping() == false && player.getPlayerHitBox().intersects(ground) == false){
