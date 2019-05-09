@@ -4,9 +4,9 @@ import java.awt.*;
 
 public class Player {
     //the player played by the person using this client
-    public int xpos, ypos, jumpTimer, health, abilityTimer, punchTimer;
-    public Rectangle playerHitBox, punchHitBox, blockHitBox;
-    public Boolean jumping, onground, punching, faceLeft, blocking;
+    public int xpos, ypos, jumpTimer, health, abilityTimer, punchTimer, kickTimer;
+    public Rectangle playerHitBox, punchHitBox, blockHitBox, kickHitBox;
+    public Boolean jumping, onground, punching, faceLeft, blocking, kicking;
 
     public Player(String type) {
         //positionss
@@ -16,7 +16,7 @@ public class Player {
         //timers
         this.jumpTimer = 0;
         this.punchTimer = 0;
-
+        this.kickTimer = 0;
 
         //jumping shite
         this.setFaceLeft(false);
@@ -24,11 +24,13 @@ public class Player {
         this.setOnground(false);
         this.setJumping(false);
         this.setBlocking(false);
+        this.setKicking(false);
 
         //hitboxes
         playerHitBox = new Rectangle(this.xpos, this.ypos, 70, 100);
         punchHitBox = new Rectangle(this.xpos, this.ypos, 0, 0);
         blockHitBox = new Rectangle(this.xpos, this.ypos, 0, 0);
+        kickHitBox = new Rectangle(this.xpos, this.ypos, 0, 0);
 
         //health ect
         this.health = 100;
@@ -108,6 +110,28 @@ public class Player {
             blockHitBox.setBounds(this.xpos, this.ypos, 0, 0);
         }
 
+        //kicking (HB like punch i guess)
+        if (this.getKickTimer() > 35) {
+            //kicking out
+            if (this.getFaceLeft()) {
+                kickHitBox.setBounds((int) (this.xpos - (kickHitBox.getWidth() + 1)), this.ypos + 70, (int) (kickHitBox.getWidth() + 1), 20);
+            } else {
+                kickHitBox.setBounds(this.xpos + 70, this.ypos + 70, (int) kickHitBox.getWidth() + 1, 20);
+            }
+            this.setKickTimer(this.getKickTimer() - 1);
+        } else if (this.getKickTimer() > 1) {
+            //kicking in
+            if (this.getFaceLeft()) {
+                kickHitBox.setBounds((int) (this.xpos - (kickHitBox.getWidth() - 1)), this.ypos + 70, (int) (kickHitBox.getWidth() - 1), 20);
+            } else {
+                kickHitBox.setBounds(this.xpos + 70, this.ypos + 70, (int) kickHitBox.getWidth() - 1, 20);
+            }
+            this.setKickTimer(this.getPunchTimer() - 1);
+        } else {
+            this.setKicking(false);
+            kickHitBox.setBounds(this.xpos, this.ypos, 0, 0);
+        }
+
     }
 
     public int jump(int delta) {
@@ -126,6 +150,11 @@ public class Player {
     public void block() {
         //blocking
         this.setBlocking(true);
+    }
+
+    public void kick(){
+        this.setKicking(true);
+        this.setKickTimer(70);
     }
 
     public int move_left(int delta){
@@ -187,6 +216,30 @@ public class Player {
 
     public Rectangle getPunchHitBox() {
         return punchHitBox;
+    }
+
+    public Boolean getKicking() {
+        return kicking;
+    }
+
+    public void setKicking(Boolean kicking) {
+        this.kicking = kicking;
+    }
+
+    public int getKickTimer() {
+        return kickTimer;
+    }
+
+    public void setKickTimer(int kickTimer) {
+        this.kickTimer = kickTimer;
+    }
+
+    public Rectangle getKickHitBox() {
+        return kickHitBox;
+    }
+
+    public void setKickHitBox(Rectangle kickHitBox) {
+        this.kickHitBox = kickHitBox;
     }
 
     public void setPunchHitBox(Rectangle punchHitBox) {

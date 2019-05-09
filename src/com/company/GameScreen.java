@@ -39,6 +39,7 @@ public class GameScreen extends BasicGameState {
         playerImg.draw(player.getXpos(), player.getYpos());
         g.drawRect(player.getPunchHitBox().x, player.getPunchHitBox().y, (float)player.getPunchHitBox().getWidth(), (float)player.getPunchHitBox().getHeight());
         g.drawRect(player.getBlockHitBox().x, player.getBlockHitBox().y, (float)player.getBlockHitBox().getWidth(), (float)player.getBlockHitBox().getHeight());
+        g.drawRect(player.getKickHitBox().x, player.getKickHitBox().y, (float)player.getKickHitBox().getWidth(), (float)player.getKickHitBox().getWidth());
     }
 
     @Override
@@ -61,16 +62,27 @@ public class GameScreen extends BasicGameState {
 
         //punch
         if(input.isKeyPressed(input.KEY_Q)){
-            player.punch();
+            if(player.getBlocking() == false && player.getKicking() == false) {
+                player.punch();
+            }
         }
 
         //block
         if(input.isKeyDown(input.KEY_W)){
-            player.block();
+            if(player.getPunching() == false && player.getKicking() == false) {
+                player.block();
+            }
         }else{
             player.setBlocking(false);
         }
 
+        //kick
+        if(input.isKeyPressed(input.KEY_E)){
+            if(player.getBlocking() == false && player.getPunching() == false){
+                //now we can kick
+                player.kick();
+            }
+        }
 
         //gravity
         if(player.getJumping() == false && player.getPlayerHitBox().intersects(ground) == false){
