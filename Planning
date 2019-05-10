@@ -45,6 +45,7 @@ Char select:
 - Countdown timer (30 sec?) to choose char
 - "SELECT A CHARACTER"=title, grid of charss -> click on a char displays info/stats with "CONFIRM" button 
 - "PLAY" button inactive until char has been selected, if player2 selects "PLAY" before player1 then display "Player 2 waiting..."
+- Hover over (so navigating to character without selecting enter) shows stats, attributes and character picture/icon
 
 RAMBLING:
 - New idea: countdown timer for a minute at each time that introduces a randomised "obstacle" that does damage to both players. 
