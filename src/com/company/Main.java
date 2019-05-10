@@ -41,6 +41,6 @@ public class Main extends StateBasedGame {
         this.getState(gameScreen).init(gc, this);
         this.getState(pauseMenuScreen).init(gc, this);
         this.getState(gameOverScreen).init(gc, this);
-        this.enterState(gameScreen);
+        this.enterState(startScreen);
     }
 }

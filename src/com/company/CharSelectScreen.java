@@ -94,7 +94,7 @@ public class CharSelectScreen extends BasicGameState {
         graphics.drawString(confirm, 500, 400);
         graphics.setFont(testFont);
 
-        String timeString = Integer.toString(time);
+        String timeString = Integer.toString(Math.round(time/1000));
         graphics.drawString(timeString, 700, 100);
     }
 
