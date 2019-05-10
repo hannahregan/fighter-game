@@ -73,6 +73,7 @@ public class CharSelectScreen extends BasicGameState {
         characterOptions[5] = "Character 6";
         characterOptions[6] = "Back";
 
+        time = 0;
     }
 
     @Override

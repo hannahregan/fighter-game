@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f9eb6b86-cf7d-48f4-ae6b-037f46792c5d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/fighter-game/com/company/CharSelectScreen.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/fighter-game/com/company/CharSelectScreen.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/company/CharSelectScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/CharSelectScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Main.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -79,12 +76,12 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="Planning" value="11" />
-          <entry key="java" value="2451" />
+          <entry key="java" value="2463" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="2451" />
+          <entry key="JAVA" value="2463" />
           <entry key="PLAIN_TEXT" value="11" />
         </counts>
       </usages-collector>
@@ -128,8 +125,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/company/CharSelectScreen.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="274">
-              <caret line="96" column="67" selection-start-line="96" selection-start-column="67" selection-end-line="96" selection-end-column="67" />
+            <state relative-caret-position="409">
+              <caret line="75" column="17" selection-start-line="75" selection-start-column="17" selection-end-line="75" selection-end-column="17" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -220,7 +217,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1557448715983" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1557448855621" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/slick.jar!/" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
@@ -287,12 +284,12 @@
       <workItem from="1556416808656" duration="2267000" />
       <workItem from="1557125960761" duration="2319000" />
       <workItem from="1557378198275" duration="2151000" />
-      <workItem from="1557439831814" duration="1517000" />
+      <workItem from="1557439831814" duration="1747000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17291000" />
+    <option name="totallyTimeSpent" value="17521000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1920" y="-1" width="1920" height="1200" extended-state="6" />
@@ -307,14 +304,14 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32984293" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3293023" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3293023" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32984293" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="9" weight="0.3283721" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.3283721" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="11" weight="0.32984293" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -505,8 +502,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/CharSelectScreen.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="274">
-          <caret line="96" column="67" selection-start-line="96" selection-start-column="67" selection-end-line="96" selection-end-column="67" />
+        <state relative-caret-position="409">
+          <caret line="75" column="17" selection-start-line="75" selection-start-column="17" selection-end-line="75" selection-end-column="17" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
