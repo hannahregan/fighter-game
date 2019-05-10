@@ -50,6 +50,7 @@ RAMBLING:
 - New idea: countdown timer for a minute at each time that introduces a randomised "obstacle" that does damage to both players. 
   For example, the first can be a neutral enemy that deals damage to both of the players. Players have to attack enemy to get rid of it.
   Another example: randomly generated 'missiles' that come out of the sides so players have to move/jump or will take damage.
+- Could also incorporate a speech bubble when someone wins/loses in the pause combo? 
 
 CHECKLIST:
 
@@ -63,3 +64,4 @@ CHECKLIST:
 [ ] Art
 
 [ ] Different Chars and atributes
+    - Should the characters be like our friends lmaoooo (CBK)
