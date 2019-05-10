@@ -19,13 +19,18 @@ public class CharSelectScreen extends BasicGameState {
 
     }
 
-    //private Image bgImage;
+    private Image bgImage;
+    //TODO: Add background image, change character names
+
     private Font font;
+    private Font test;
     private String[] characterOptions = new String[7];
-    private TrueTypeFont characterOptionsFont, foo;
+    private TrueTypeFont characterOptionsFont, foo, testFont;
     private int playerChoice = 0;
     private boolean exit;
     private Color notChosen = new Color(153, 204, 255);
+
+    private int time = 0;
 
     private String confirm = "Ready?";
 
@@ -37,6 +42,10 @@ public class CharSelectScreen extends BasicGameState {
     private static final int C6 = 5;
     private static final int QUIT = 6;
 
+    Main main;
+    StartScreen startScreen = new StartScreen(0);
+
+
 
 
     @Override
@@ -47,12 +56,14 @@ public class CharSelectScreen extends BasicGameState {
     @Override
     public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
 
-        //bgImage = new Image("res/charSelectBG.jpg");
+        bgImage = new Image("res/test/charSelectBG.jpg");
         font = new Font("Verdana", Font.BOLD, 40);
         characterOptionsFont = new TrueTypeFont(font, true);
         font = new Font ("Verdana", Font.PLAIN, 20);
         foo = new TrueTypeFont(font, true);
         font = new Font("Verdana", Font.BOLD, 40);
+        test = new Font("Verdana", Font.BOLD, 60);
+        testFont = new TrueTypeFont(test, true);
 
         characterOptions[0] = "Character 1";
         characterOptions[1] = "Character 2";
@@ -60,58 +71,93 @@ public class CharSelectScreen extends BasicGameState {
         characterOptions[3] = "Character 4";
         characterOptions[4] = "Character 5";
         characterOptions[5] = "Character 6";
-        characterOptions[6] = "Quit";
+        characterOptions[6] = "Back";
 
     }
 
     @Override
     public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException {
 
-        //graphics.drawImage(bgImage,0, 0, null);
-        graphics.setBackground(orange);
+        graphics.drawImage(bgImage,0, 0, null);
+        //graphics.setBackground(orange);
         int i = 0;
         while (i < characterOptions.length) {
             if (playerChoice == i) {
-                characterOptionsFont.drawString((i * 50), (i * 50), characterOptions[i]);
+                characterOptionsFont.drawString((6 * 50), ((i * 50) + 200), characterOptions[i]);
             } else {
-                characterOptionsFont.drawString((i * 50), (i * 50), characterOptions[i], notChosen);
+                characterOptionsFont.drawString((6 * 50), ((i * 50) + 200), characterOptions[i], notChosen);
             }
             i++;
         }
 
+        graphics.drawString("Select a Character", 300, 100);
         graphics.drawString(confirm, 500, 400);
+        graphics.setFont(testFont);
+
+        String timeString = Integer.toString(time);
+        graphics.drawString(timeString, 700, 100);
     }
 
     @Override
     public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int i) throws SlickException {
+        //TODO: Add timer functionality
+        time += i;
 
-        Input input = gameContainer.getInput();
+        if (time != 30000) { // If time > 30 seconds
 
-        // Navigating menu via arrow keys
-        if (input.isKeyPressed(Input.KEY_DOWN)) {
-            if (playerChoice == characterOptions.length - 1) {
-                playerChoice = 0;
-            } else {
-                playerChoice++;
+            Input input = gameContainer.getInput();
+
+            // Navigating menu via arrow keys
+            if (input.isKeyPressed(Input.KEY_DOWN)) {
+                if (playerChoice == characterOptions.length - 1) {
+                    playerChoice = 0;
+                } else {
+                    playerChoice++;
+                }
             }
-        }
-        if (input.isKeyPressed(Input.KEY_UP)) {
-            if (playerChoice == 0) {
-                playerChoice = characterOptions.length - 1;
-            } else {
-                playerChoice--;
+            if (input.isKeyPressed(Input.KEY_UP)) {
+                if (playerChoice == 0) {
+                    playerChoice = characterOptions.length - 1;
+                } else {
+                    playerChoice--;
+                }
             }
-        }
 
-        if (input.isKeyPressed(Input.KEY_ENTER)) {
-            switch (playerChoice) {
-                case C1:
-                    confirm = "Character 1 is selected!\n Prepare for battle...";
-                    exit = true;
-                    break;
+            if (input.isKeyPressed(Input.KEY_ENTER)) {
+                input.clearKeyPressedRecord();
+                switch (playerChoice) {
+                    case C1:
+                        confirm = "Character 1 is selected!\n Prepare for battle...";
+                        break;
+                    case C2:
+                        confirm = "Character 2 is selected!\n Prepare for battle...";
+                        break;
+                    case C3:
+                        confirm = "Character 3 is selected!\n Prepare for battle...";
+                        break;
+                    case C4:
+                        confirm = "Character 4 is selected!\n Prepare for battle...";
+                        break;
+                    case C5:
+                        confirm = "Character 5 is selected!\n Prepare for battle...";
+                        break;
+                    case C6:
+                        confirm = "Character 6 is selected!\n Prepare for battle...";
+                    case QUIT:
+                        // TODO: Get this working
+                        exit = true;
+                        if (exit) {
+                            stateBasedGame.enterState(startScreen.getID());
+                        }
+                        break;
+                }
             }
-        }
+        } else {
+            exit = true;
+            confirm = "Out of time!";
+            stateBasedGame.enterState(startScreen.getID());
 
+        }
     }
 
 }
