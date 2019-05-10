@@ -20,7 +20,11 @@ public class CharSelectScreen extends BasicGameState {
     }
 
     private Image bgImage;
-    //TODO: Add background image, change character names
+    private Image title;
+    private Image[] characterImages = new Image[6];
+
+    private int charImageX = 100;
+    private int charImageY = 250;
 
     private Font font;
     private Font test;
@@ -30,7 +34,7 @@ public class CharSelectScreen extends BasicGameState {
     private boolean exit;
     private Color notChosen = new Color(153, 204, 255);
 
-    private int time = 0;
+    private int time = 30;
 
     private String confirm = "Ready?";
 
@@ -42,10 +46,9 @@ public class CharSelectScreen extends BasicGameState {
     private static final int C6 = 5;
     private static final int QUIT = 6;
 
-    Main main;
+
     StartScreen startScreen = new StartScreen(0);
-
-
+    GameScreen gameScreen = new GameScreen(2);
 
 
     @Override
@@ -57,6 +60,8 @@ public class CharSelectScreen extends BasicGameState {
     public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
 
         bgImage = new Image("res/test/charSelectBG.jpg");
+        title = new Image("res/charScreen/title.png");
+
         font = new Font("Verdana", Font.BOLD, 40);
         characterOptionsFont = new TrueTypeFont(font, true);
         font = new Font ("Verdana", Font.PLAIN, 20);
@@ -65,46 +70,62 @@ public class CharSelectScreen extends BasicGameState {
         test = new Font("Verdana", Font.BOLD, 60);
         testFont = new TrueTypeFont(test, true);
 
-        characterOptions[0] = "Character 1";
-        characterOptions[1] = "Character 2";
-        characterOptions[2] = "Character 3";
-        characterOptions[3] = "Character 4";
-        characterOptions[4] = "Character 5";
-        characterOptions[5] = "Character 6";
+        characterOptions[0] = "William Williams";
+        characterOptions[1] = "Jesus";
+        characterOptions[2] = "Angry Bear";
+        characterOptions[3] = "Baby Roo";
+        characterOptions[4] = "Gunslinger";
+        characterOptions[5] = "Lava Boy";
         characterOptions[6] = "Back";
 
-        time = 0;
+        characterImages[0] = new Image("res/test/playerdown.png");
+        characterImages[1] = new Image("res/test/playerleft.png");
+        characterImages[2] = new Image("res/test/playerright.png");
+        characterImages[3] = new Image("res/test/enemy.png");
+        characterImages[4] = new Image("res/test/playerup.png");
+        characterImages[5] = new Image("res/test/enemy.png");
+
+
+        time = 30;
     }
 
     @Override
     public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException {
 
         graphics.drawImage(bgImage,0, 0, null);
-        //graphics.setBackground(orange);
+        graphics.drawImage(title, 100, 20);
+
         int i = 0;
         while (i < characterOptions.length) {
             if (playerChoice == i) {
-                characterOptionsFont.drawString((6 * 50), ((i * 50) + 200), characterOptions[i]);
+                characterOptionsFont.drawString((8 * 50), ((i * 50) + 200), characterOptions[i]);
             } else {
-                characterOptionsFont.drawString((6 * 50), ((i * 50) + 200), characterOptions[i], notChosen);
+                characterOptionsFont.drawString((8 * 50), ((i * 50) + 200), characterOptions[i], notChosen);
             }
             i++;
         }
 
-        graphics.drawString("Select a Character", 300, 100);
-        graphics.drawString(confirm, 500, 400);
-        graphics.setFont(testFont);
+        int j = 0;
+        while (j < characterImages.length) {
+            if (playerChoice == j) {
+                graphics.drawImage(characterImages[j], charImageX, charImageY);
+            }
+            j++;
+        }
+
+        graphics.drawString(confirm, 650, 500);
 
         String timeString = Integer.toString(Math.round(time/1000));
         graphics.drawString(timeString, 700, 100);
     }
+
 
     @Override
     public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int i) throws SlickException {
         //TODO: Add timer functionality
         time += i;
 
-        if (time != 30000) { // If time > 30 seconds
+        if (time != 0) { // If time > 30 seconds
 
             Input input = gameContainer.getInput();
 
@@ -112,6 +133,7 @@ public class CharSelectScreen extends BasicGameState {
             if (input.isKeyPressed(Input.KEY_DOWN)) {
                 if (playerChoice == characterOptions.length - 1) {
                     playerChoice = 0;
+
                 } else {
                     playerChoice++;
                 }
@@ -124,26 +146,28 @@ public class CharSelectScreen extends BasicGameState {
                 }
             }
 
+            // Might want to do String.format for the cases
             if (input.isKeyPressed(Input.KEY_ENTER)) {
                 input.clearKeyPressedRecord();
                 switch (playerChoice) {
                     case C1:
-                        confirm = "Character 1 is selected!\n Prepare for battle...";
+                        confirm = "William Williams is selected!\n Prepare for battle...";
                         break;
                     case C2:
-                        confirm = "Character 2 is selected!\n Prepare for battle...";
+                        confirm = "Jesus is selected!\n Prepare for battle...";
                         break;
                     case C3:
-                        confirm = "Character 3 is selected!\n Prepare for battle...";
+                        confirm = "Angry Bear is selected!\n Prepare for battle...";
                         break;
                     case C4:
-                        confirm = "Character 4 is selected!\n Prepare for battle...";
+                        confirm = "Baby Roo is selected!\n Prepare for battle...";
                         break;
                     case C5:
-                        confirm = "Character 5 is selected!\n Prepare for battle...";
+                        confirm = "Gunslinger is selected!\n Prepare for battle...";
                         break;
                     case C6:
-                        confirm = "Character 6 is selected!\n Prepare for battle...";
+                        confirm = "Lava Boy is selected!\n Prepare for battle...";
+                        break;
                     case QUIT:
                         // TODO: Get this working
                         exit = true;
@@ -156,7 +180,7 @@ public class CharSelectScreen extends BasicGameState {
         } else {
             exit = true;
             confirm = "Out of time!";
-            stateBasedGame.enterState(startScreen.getID());
+            stateBasedGame.enterState(gameScreen.getID());
 
         }
     }
