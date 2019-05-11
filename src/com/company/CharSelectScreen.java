@@ -78,7 +78,7 @@ public class CharSelectScreen extends BasicGameState {
         characterOptions[5] = "Lava Boy";
         characterOptions[6] = "Back";
 
-        characterImages[0] = new Image("res/test/playerdown.png");
+        characterImages[0] = new Image("res/charScreen/william.png");
         characterImages[1] = new Image("res/test/playerleft.png");
         characterImages[2] = new Image("res/test/playerright.png");
         characterImages[3] = new Image("res/test/enemy.png");
@@ -108,6 +108,7 @@ public class CharSelectScreen extends BasicGameState {
         int j = 0;
         while (j < characterImages.length) {
             if (playerChoice == j) {
+                characterImages[j].draw(55, 66, 0.2);
                 graphics.drawImage(characterImages[j], charImageX, charImageY);
             }
             j++;
