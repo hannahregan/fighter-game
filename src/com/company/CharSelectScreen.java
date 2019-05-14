@@ -24,7 +24,7 @@ public class CharSelectScreen extends BasicGameState {
     private Image[] characterImages = new Image[6];
 
     private int charImageX = 100;
-    private int charImageY = 250;
+    private int charImageY = 200;
 
     private Font font;
     private Font test;
@@ -36,7 +36,7 @@ public class CharSelectScreen extends BasicGameState {
 
     private int time = 30;
 
-    private String confirm = "Ready?";
+    private String confirm = "";
 
     private static final int C1 = 0;
     private static final int C2 = 1;
@@ -45,10 +45,6 @@ public class CharSelectScreen extends BasicGameState {
     private static final int C5 = 4;
     private static final int C6 = 5;
     private static final int QUIT = 6;
-
-
-    StartScreen startScreen = new StartScreen(0);
-    GameScreen gameScreen = new GameScreen(2);
 
 
     @Override
@@ -64,7 +60,7 @@ public class CharSelectScreen extends BasicGameState {
 
         font = new Font("Verdana", Font.BOLD, 40);
         characterOptionsFont = new TrueTypeFont(font, true);
-        font = new Font ("Verdana", Font.PLAIN, 20);
+        font = new Font ("Verdana", Font.BOLD, 20);
         foo = new TrueTypeFont(font, true);
         font = new Font("Verdana", Font.BOLD, 40);
         test = new Font("Verdana", Font.BOLD, 60);
@@ -85,8 +81,6 @@ public class CharSelectScreen extends BasicGameState {
         characterImages[4] = new Image("res/test/playerup.png");
         characterImages[5] = new Image("res/test/enemy.png");
 
-
-        time = 30;
     }
 
     @Override
@@ -108,16 +102,16 @@ public class CharSelectScreen extends BasicGameState {
         int j = 0;
         while (j < characterImages.length) {
             if (playerChoice == j) {
-                characterImages[j].draw(55, 66, 0.2);
+                //characterImages[j].draw(100, 100, 0.2);
                 graphics.drawImage(characterImages[j], charImageX, charImageY);
             }
             j++;
         }
 
-        graphics.drawString(confirm, 650, 500);
+        foo.drawString(600, 500, confirm, Color.black);
 
         String timeString = Integer.toString(Math.round(time/1000));
-        graphics.drawString(timeString, 700, 100);
+        testFont.drawString(750, 300, timeString, Color.white);
     }
 
 
@@ -151,29 +145,29 @@ public class CharSelectScreen extends BasicGameState {
             if (input.isKeyPressed(Input.KEY_ENTER)) {
                 input.clearKeyPressedRecord();
                 switch (playerChoice) {
+                    //TODO: Program not recognising new line in text, fix this
                     case C1:
-                        confirm = "William Williams is selected!\n Prepare for battle...";
+                        confirm = "William Williams selected!";
                         break;
                     case C2:
-                        confirm = "Jesus is selected!\n Prepare for battle...";
+                        confirm = "Jesus selected!";
                         break;
                     case C3:
-                        confirm = "Angry Bear is selected!\n Prepare for battle...";
+                        confirm = "Angry Bear selected!";
                         break;
                     case C4:
-                        confirm = "Baby Roo is selected!\n Prepare for battle...";
+                        confirm = "Baby Roo selected!";
                         break;
                     case C5:
-                        confirm = "Gunslinger is selected!\n Prepare for battle...";
+                        confirm = "Gunslinger selected!";
                         break;
                     case C6:
-                        confirm = "Lava Boy is selected!\n Prepare for battle...";
+                        confirm = "Lava Boy selected!";
                         break;
                     case QUIT:
-                        // TODO: Get this working
                         exit = true;
                         if (exit) {
-                            stateBasedGame.enterState(startScreen.getID());
+                            stateBasedGame.enterState(0);
                         }
                         break;
                 }
@@ -181,7 +175,7 @@ public class CharSelectScreen extends BasicGameState {
         } else {
             exit = true;
             confirm = "Out of time!";
-            stateBasedGame.enterState(gameScreen.getID());
+            stateBasedGame.enterState(2);
 
         }
     }
