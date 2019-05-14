@@ -34,7 +34,7 @@ public class CharSelectScreen extends BasicGameState {
     private boolean exit;
     private Color notChosen = new Color(153, 204, 255);
 
-    private int time = 30;
+    private int time;
 
     private String confirm = "";
 
@@ -54,6 +54,8 @@ public class CharSelectScreen extends BasicGameState {
 
     @Override
     public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
+
+        this.time = 30000;
 
         bgImage = new Image("res/test/charSelectBG.jpg");
         title = new Image("res/charScreen/title.png");
@@ -118,10 +120,9 @@ public class CharSelectScreen extends BasicGameState {
     @Override
     public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int i) throws SlickException {
         //TODO: Add timer functionality
-        time += i;
 
         if (time != 0) { // If time > 30 seconds
-
+            time -= i;
             Input input = gameContainer.getInput();
 
             // Navigating menu via arrow keys
